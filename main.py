@@ -4,8 +4,6 @@ def citire_lista(n):
         list.append(int(input("Numar=")))
     return list
 
-
-
 def is_superprime(n):
     while n != 0:
         if is_prime(n):
@@ -38,6 +36,7 @@ def invers(n):
     while n != 0:
         inv = inv + n % 10
         n = n//10
+    return inv
 
 def find_cmmdc(n, m):
     while n != m:
@@ -72,7 +71,7 @@ def modificare_lista(list):
         if list[i] > 0:
             cmmdc = find_cmmdc(cmmdc, list[i])
         else:
-            list[i] =  -int(invers(list[i]))
+            list[i] = invers(list[i])
     for i in range(0, len(list)):
         if list[i] > 0:
             list[i] = cmmdc
@@ -80,7 +79,12 @@ def modificare_lista(list):
 
 def test_modificare_lista(list):
     assert modificare_lista([-76, 12, 24, -13, 144]) == [-67, 12, 12, -31, 12]
-    assert modificare_lista([-1, 34, -25, 42, 12]) ==  [-1, 2, -52, 2, 2]
+    assert modificare_lista([-1, 34, -25, 42, 12]) == [-1, 2, -52, 2, 2]
+
+def test_afisarea_numere_negative(list):
+    assert afisarea_numere_negative([-10, 5, -12, 6, 17]) == [-10, -12,]
+    assert afisarea_numere_negative([-17, 2, -20, 4]) == [-17, -20]
+
 
 def main():
 
@@ -92,7 +96,7 @@ def main():
     print("6. Iesire program")
 
     while True:
-        x = input("Comanda=")
+        x = int(input("Comanda="))
         if x == 1:
             n = int(input("Numar de elemente din lista="))
             citire_lista(n)
@@ -111,8 +115,7 @@ def main():
             print("Comanda invalida")
 
 
+main()
 
-
-
-
+test_modificare_lista(list)
 
